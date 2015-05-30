@@ -1,3 +1,18 @@
+var Stars = React.createClass({
+    render: function() {
+        return (
+            <li>
+                <div>
+                    {this.props.plugin.name} - Rating: {
+                        Math.round(this.props.plugin.rating)
+                    }<br></br>
+                    {this.props.plugin.description}
+                </div>
+            </li>
+        )
+    }
+})
+
 var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
@@ -20,7 +35,16 @@ var SearchBar = React.createClass({
 
 var Plugin = React.createClass({
     render: function() {
-        return <li>{this.props.plugin.name}</li>
+        return (
+            <li>
+                <div>
+                    {this.props.plugin.name} - Rating: {
+                        Math.round(this.props.plugin.rating)
+                    }<br></br>
+                    {this.props.plugin.description}
+                </div>
+            </li>
+        )
     }
 })
 
@@ -60,10 +84,10 @@ var CordovaPluginList = React.createClass({
             pluginCount = 0,
             self = this;
 
-        xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:cordova&size=20&sort=rating:desc&start=0", function(xhrResult) {
+        xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=20&sort=rating:desc&start=0", function(xhrResult) {
             plugins = xhrResult.results;
             pluginCount = xhrResult.total;
-            xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:cordova&size=" + (pluginCount - 20) + "&sort=rating:desc&start=20", function(xhrResult) {
+            xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=" + (pluginCount - 20) + "&sort=rating:desc&start=20", function(xhrResult) {
                 plugins = [].concat(plugins, xhrResult.results);
                 if (this.isMounted()) {
                     this.setState({
