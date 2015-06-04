@@ -92,6 +92,9 @@ var Plugin = React.createClass({
                 <div>
                     <div id="pluginName"><a href={this.props.plugin.homepage}>{this.props.plugin.name}</a></div>
                     <div id="pluginDesc">{this.props.plugin.description}</div>
+                    <div>
+                        Author: {this.props.plugin.author} (v{this.props.plugin.version} - {this.props.plugin.license})
+                    </div>
                     <SupportedPlatforms keywords={this.props.plugin.keywords}/>
                 </div>
             </li>
@@ -137,10 +140,10 @@ var CordovaPluginList = React.createClass({
             pluginCount = 0,
             self = this;
 
-        xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=20&sort=rating:desc&start=0", function(xhrResult) {
+        xhrRequest("http://npmsearch.com/query?fields=name,keywords,license,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=20&start=0", function(xhrResult) {
             plugins = xhrResult.results;
             pluginCount = xhrResult.total;
-            xhrRequest("http://npmsearch.com/query?fields=name,keywords,rating,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=" + (pluginCount - 20) + "&sort=rating:desc&start=20", function(xhrResult) {
+            xhrRequest("http://npmsearch.com/query?fields=name,keywords,license,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=" + (pluginCount - 20) + "&start=20", function(xhrResult) {
                 plugins = [].concat(plugins, xhrResult.results);
                 if (this.isMounted()) {
                     this.setState({
