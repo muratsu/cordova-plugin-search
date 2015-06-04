@@ -1,3 +1,6 @@
+var React    = window.React = require('react'), // assign it to window for react chrome extension
+    App = {};
+
 var Stars = React.createClass({
     render: function() {
         return (
@@ -16,7 +19,7 @@ var Stars = React.createClass({
 var OfficialPlugin = React.createClass({
     render: function() {
         return (
-            <img src="/img/star.svg" className="star"></img>
+            <img src="/build/img/star.svg" className="star"></img>
         );
     }
 })
@@ -200,10 +203,12 @@ var CordovaPluginList = React.createClass({
     }
 });
 
-React.render(
-    <CordovaPluginList />,
-    document.getElementById('container')
-)
+App.start = function() {
+    React.render(
+        <CordovaPluginList />,
+        document.getElementById('container')
+    )    
+};
 
 function xhrRequest(url, success, fail) {
     var xhr = new XMLHttpRequest();
@@ -221,3 +226,6 @@ function xhrRequest(url, success, fail) {
     xhr.open("GET", url, true);
     xhr.send();
 }
+
+
+module.exports = window.App = App;

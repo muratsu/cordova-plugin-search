@@ -3,27 +3,13 @@
   <head>
     <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
     <title>Cordova Search Website</title>
-    <link rel="stylesheet" href="css/flexboxgrid.css" />
-    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="build/styles.css" />
   </head>
 
   <body>
     <h1>Cordova Plugin Search</h1>
-    <div id="container">
-      <p>
-        If you can see this, React is not working right. This is probably because you&apos;re viewing
-        this on your file system instead of a web server. Try running
-        <pre>
-          python -m SimpleHTTPServer
-        </pre>
-        and going to <a href="http://localhost:8000/">http://localhost:8000/</a>.
-      </p>
-    </div>
-    <script src="js/es5-shim.min.js"></script>
-    <script src="js/es5-sham.min.js"></script>
-    <script src="js/console-polyfill.js"></script>
-    <script src="js/react.js"></script>
-    <script src="js/JSXTransformer.js"></script>
-    <script type="text/jsx" src="index.js"></script>
+    <div id="container"></div>
+    <script src="build/app.js"></script>
+    <script>App.start();</script>
   </body>
 </html>

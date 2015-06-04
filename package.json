@@ -1,0 +1,28 @@
+{
+  "name": "Cordova-Plugin-Search-WWW",
+  "version": "0.0.1",
+  "description": "Website for Cordova Plugin Search",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muratsu/cordova-plugin-search.git"
+  },
+  "author": "sutunc@gmail.com",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/muratsu/cordova-plugin-search/issues"
+  },
+  "homepage": "https://github.com/muratsu/cordova-plugin-search",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-imagemin": "^2.2.1",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1"
+  }
+}
