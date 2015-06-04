@@ -90,7 +90,7 @@ var Plugin = React.createClass({
         return (
             <li>
                 <div>
-                    <div id="pluginName">{this.props.plugin.name}</div>
+                    <div id="pluginName"><a href={this.props.plugin.homepage}>{this.props.plugin.name}</a></div>
                     <div id="pluginDesc">{this.props.plugin.description}</div>
                     <SupportedPlatforms keywords={this.props.plugin.keywords}/>
                 </div>
