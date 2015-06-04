@@ -13,6 +13,55 @@ var Stars = React.createClass({
     }
 })
 
+var SupportedPlatforms = React.createClass({
+    render: function() {
+        var keywords = this.props.keywords;
+        var platformsSupported = [];
+        // remove windows8 & windows dupe
+        if (keywords.indexOf('cordova-windows') > -1 && keywords.indexOf('cordova-windows8') > -1) {
+            keywords.splice(keywords.indexOf('cordova-windows8'), 1);
+        }
+        keywords.forEach(function(keyword) {
+            switch (keyword) {
+                case 'cordova-firefoxos':
+                    platformsSupported.push(<div>FirefoxOS</div>);
+                    break;
+                case 'cordova-android':
+                    platformsSupported.push(<div>Android</div>);
+                    break;
+                case 'cordova-amazon-fireos':
+                    platformsSupported.push(<div>FireOS</div>);
+                    break;
+                case 'cordova-ubuntu':
+                    platformsSupported.push(<div>Ubuntu</div>);
+                    break;
+                case 'cordova-ios':
+                    platformsSupported.push(<div>iOS</div>);
+                    break;
+                case 'cordova-blackberry10':
+                    platformsSupported.push(<div>Blackberry10</div>);
+                    break;
+                case 'cordova-wp7':
+                    platformsSupported.push(<div>Windows Phone 7</div>);
+                    break;
+                case 'cordova-wp8':
+                    platformsSupported.push(<div>Windows Phone 8</div>);
+                    break;
+                case 'cordova-windows8':
+                case 'cordova-windows':
+                    platformsSupported.push(<div>Windows</div>);
+                    break;
+                case 'cordova-browser':
+                    platformsSupported.push(<div>Browser</div>);
+                    break;
+            }
+        });
+        return (
+            <div id="supportedPlatforms">{platformsSupported}</div>
+        );
+    }
+})
+
 var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
@@ -21,13 +70,16 @@ var SearchBar = React.createClass({
     },
     render: function() {
         return (
-            <div>
-                <input
-                    placeholder={this.props.placeHolderText}
-                    value={this.props.filterText}
-                    ref="filterTextInput"
-                    onChange={this.handleChange}
-                />
+            <div className="col-xs-offset-2 col-xs-8">
+                <div id="searchwrapper">
+                    <input
+                        className="searchBox"
+                        placeholder={this.props.placeHolderText}
+                        value={this.props.filterText}
+                        ref="filterTextInput"
+                        onChange={this.handleChange}
+                    />
+                </div>
             </div>
         );
     }
@@ -38,10 +90,9 @@ var Plugin = React.createClass({
         return (
             <li>
                 <div>
-                    {this.props.plugin.name} - Rating: {
-                        Math.round(this.props.plugin.rating)
-                    }<br></br>
-                    {this.props.plugin.description}
+                    <div id="pluginName">{this.props.plugin.name}</div>
+                    <div id="pluginDesc">{this.props.plugin.description}</div>
+                    <SupportedPlatforms keywords={this.props.plugin.keywords}/>
                 </div>
             </li>
         )
@@ -52,14 +103,16 @@ var PluginList = React.createClass({
     render: function() {
         var plugins = [];
         this.props.plugins.forEach(function(plugin) {
-            if (plugin.name.indexOf(this.props.filterText) > -1) {
+            if (plugin.name[0].indexOf(this.props.filterText) > -1) {
                 plugins.push(<Plugin plugin={plugin} key={plugin.author + plugin.name}/>);
             }
         }.bind(this));
         return (
-            <ul>
-                {plugins}
-            </ul>
+            <div className="col-xs-offset-2 col-xs-8">
+                <ul id="pluginList">
+                    {plugins}
+                </ul>
+            </div>
         );
     }
 });
@@ -101,7 +154,7 @@ var CordovaPluginList = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="row">
                 <SearchBar
                     filterText={this.state.filterText}
                     placeHolderText={this.state.placeHolderText}
