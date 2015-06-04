@@ -13,6 +13,14 @@ var Stars = React.createClass({
     }
 })
 
+var OfficialPlugin = React.createClass({
+    render: function() {
+        return (
+            <img src="/img/star.svg" className="star"></img>
+        );
+    }
+})
+
 var SupportedPlatforms = React.createClass({
     render: function() {
         var keywords = this.props.keywords;
@@ -87,13 +95,20 @@ var SearchBar = React.createClass({
 
 var Plugin = React.createClass({
     render: function() {
+        var license = this.props.plugin.license;
+        if (license && license.length > 1) {
+            license = license[0];
+        }
+        var officialPlugin = this.props.plugin.isOfficial;
         return (
             <li>
                 <div>
-                    <div id="pluginName"><a href={this.props.plugin.homepage}>{this.props.plugin.name}</a></div>
+                    <div id="pluginName"><a href={
+                        'https://www.npmjs.com/package/' + this.props.plugin.name
+                    }>{this.props.plugin.name}</a>{officialPlugin ? <OfficialPlugin/> : ''}</div>
                     <div id="pluginDesc">{this.props.plugin.description}</div>
                     <div>
-                        Author: {this.props.plugin.author} (v{this.props.plugin.version} - {this.props.plugin.license})
+                        Author: {this.props.plugin.author} (v{this.props.plugin.version} - {license})
                     </div>
                     <SupportedPlatforms keywords={this.props.plugin.keywords}/>
                 </div>
@@ -137,6 +152,7 @@ var CordovaPluginList = React.createClass({
 
     componentDidMount: function() {
         var plugins = [],
+            officialPlugins = [],
             pluginCount = 0,
             self = this;
 
@@ -145,13 +161,25 @@ var CordovaPluginList = React.createClass({
             pluginCount = xhrResult.total;
             xhrRequest("http://npmsearch.com/query?fields=name,keywords,license,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=" + (pluginCount - 20) + "&start=20", function(xhrResult) {
                 plugins = [].concat(plugins, xhrResult.results);
-                if (this.isMounted()) {
-                    this.setState({
-                      plugins: plugins,
-                      placeHolderText: 'Search ' + pluginCount + ' plugins...'
-                    });
-                }
-            }.bind(self), function() { console.log('xhr err'); });
+                xhrRequest("/official-plugins.json", function(xhrResult) {
+                    officialPlugins = xhrResult.plugins;
+                    officialPlugins.forEach(function(plugin) {
+                        for (var i = 0; i < plugins.length; i++) {
+                            if (plugins[i].name[0] === plugin) {
+                                plugins[i].isOfficial = true;
+                                return;
+                            } 
+                        };
+                    })
+
+                    if (this.isMounted()) {
+                        this.setState({
+                          plugins: plugins,
+                          placeHolderText: 'Search ' + pluginCount + ' plugins...'
+                        });
+                    }
+                }.bind(self), function() { console.log('xhr err'); });
+            }, function() { console.log('xhr err'); });
         }, function() { console.log('xhr err'); });
     },
 

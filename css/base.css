@@ -14,17 +14,6 @@ h1 {
   font-size: 12px;
 }
 
-#pluginName a {
-  font-size: 21px;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-}
-
-#pluginName a:hover {
-    text-decoration: underline;
-}
-
 #pluginList {
   list-style-type: none;
   padding: 0px;
@@ -41,4 +30,25 @@ h1 {
 
 #searchwrapper .searchBox {
   width: 60%;
+}
+
+#pluginName {
+  display: flex;
+}
+
+#pluginName a {
+  font-size: 21px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+#pluginName a:hover {
+    text-decoration: underline;
+}
+
+.star {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px; 
 }
