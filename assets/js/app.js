@@ -1,21 +1,6 @@
 var React    = window.React = require('react'), // assign it to window for react chrome extension
     App = {};
 
-var Stars = React.createClass({
-    render: function() {
-        return (
-            <li>
-                <div>
-                    {this.props.plugin.name} - Rating: {
-                        Math.round(this.props.plugin.rating)
-                    }<br></br>
-                    {this.props.plugin.description}
-                </div>
-            </li>
-        )
-    }
-})
-
 var OfficialPlugin = React.createClass({
     render: function() {
         return (
