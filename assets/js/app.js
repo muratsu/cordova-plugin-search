@@ -4,7 +4,7 @@ var React    = window.React = require('react'), // assign it to window for react
 var OfficialPlugin = React.createClass({
     render: function() {
         return (
-            <img src="/build/img/star.svg" className="star"></img>
+            <div id="featured"></div>
         );
     }
 })
@@ -92,15 +92,20 @@ var Plugin = React.createClass({
         var officialPlugin = this.props.plugin.isOfficial;
         return (
             <li>
-                <div>
-                    <div id="pluginName"><a href={
-                        'https://www.npmjs.com/package/' + this.props.plugin.name
-                    }>{this.props.plugin.name}</a>{officialPlugin ? <OfficialPlugin/> : ''}</div>
-                    <div id="pluginDesc">{this.props.plugin.description}</div>
-                    <div>
-                        Author: {this.props.plugin.author} (v{this.props.plugin.version} - {license})
+                <div className="pluginCardContents">
+                    {officialPlugin ? <OfficialPlugin/> : ''}
+                    <div id="pluginInfo">
+                        <div><a href={
+                            'https://www.npmjs.com/package/' + this.props.plugin.name
+                        }>{this.props.plugin.name}</a> by <span className="author">{this.props.plugin.author}</span></div>
+                        <div id="pluginDesc">{this.props.plugin.description}</div>
+                        <div>
+                            <div>
+                                v{this.props.plugin.version} - {license}
+                            </div>
+                            <SupportedPlatforms keywords={this.props.plugin.keywords}/>
+                        </div>
                     </div>
-                    <SupportedPlatforms keywords={this.props.plugin.keywords}/>
                 </div>
             </li>
         )
