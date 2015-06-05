@@ -70,6 +70,7 @@ var SearchBar = React.createClass({
                 <div id="searchwrapper">
                     <input
                         className="searchBox"
+                        type="search"
                         placeholder={this.props.placeHolderText}
                         value={this.props.filterText}
                         ref="filterTextInput"
@@ -124,7 +125,7 @@ var PluginList = React.createClass({
 });
 
 
-var CordovaPluginList = React.createClass({
+var App = React.createClass({
     getInitialState: function() {
         return {
             plugins: [],
@@ -173,16 +174,32 @@ var CordovaPluginList = React.createClass({
 
     render: function() {
         return (
-            <div className="row">
-                <SearchBar
-                    filterText={this.state.filterText}
-                    placeHolderText={this.state.placeHolderText}
-                    onUserInput={this.handleUserInput}
-                />
-                <PluginList
-                    plugins={this.state.plugins}
-                    filterText={this.state.filterText}
-                />
+            <div>
+                <div className="row" id="headerBackground">
+                    <div className="col-xs-offset-2 col-xs-8">
+                        <div id="topContent" className="row">
+                            <div className="col-xs-3">
+                                <div id="pluggy"></div>
+                            </div>
+                            <div className="col-xs-9">
+                                <p className="discover-message">Search Cordova</p>
+                                <br/>
+                                <p className="discover-message">Plugins</p>
+                            </div>
+                        </div>
+                    </div>
+                    <SearchBar
+                        filterText={this.state.filterText}
+                        placeHolderText={this.state.placeHolderText}
+                        onUserInput={this.handleUserInput}
+                    />
+                </div>
+                <div className="row">
+                    <PluginList
+                        plugins={this.state.plugins}
+                        filterText={this.state.filterText}
+                    />
+                </div>
             </div>
         );
     }
@@ -190,7 +207,7 @@ var CordovaPluginList = React.createClass({
 
 App.start = function() {
     React.render(
-        <CordovaPluginList />,
+        <App />,
         document.getElementById('container')
     )    
 };

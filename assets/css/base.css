@@ -2,6 +2,59 @@ h1 {
   text-align: center;
 }
 
+body {
+  margin: 0;
+}
+
+/*  HEADER RELATED  */
+
+/*PLUG AND MSG*/
+#headerBackground {
+  background: url('img/grid.png');
+}
+
+#topContent {
+  margin-top: 25px;
+}
+
+#pluggy {
+  background: transparent url('img/pluggy.png') no-repeat center;
+  background-size: contain;
+  height: 200px;
+  margin-left: 25px;
+}
+
+.discover-message {
+  background-color: white;
+  font-size: 48px;
+  margin: 5px;
+  text-align: left;
+  display: inline-block;
+  padding: 0px 8px;
+  font-family: 'Lato', sans-serif;
+}
+
+/*SEARCHBOX*/
+
+#searchwrapper {
+  margin: 25px 0px;
+  border: 2px solid gray;
+  background-color: white;
+}
+
+#searchwrapper .searchBox {
+  display: block;
+  height: 35px;
+  width: 100%;
+  border: 0px;  
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+
+
+
+
 #supportedPlatforms {
   display: flex;
 }
@@ -24,13 +77,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-#searchwrapper {
-  text-align: center;
-}
 
-#searchwrapper .searchBox {
-  width: 60%;
-}
 
 #pluginName {
   display: flex;
