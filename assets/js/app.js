@@ -157,7 +157,7 @@ var App = React.createClass({
             pluginCount = xhrResult.total;
             xhrRequest("http://npmsearch.com/query?fields=name,keywords,license,description,author,modified,homepage,version&q=keywords:%22ecosystem:cordova%22&size=" + (pluginCount - 20) + "&start=20", function(xhrResult) {
                 plugins = [].concat(plugins, xhrResult.results);
-                xhrRequest("/official-plugins.json", function(xhrResult) {
+                xhrRequest("official-plugins.json", function(xhrResult) {
                     officialPlugins = xhrResult.plugins;
                     officialPlugins.forEach(function(plugin) {
                         for (var i = 0; i < plugins.length; i++) {
