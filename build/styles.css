@@ -46,14 +46,14 @@ body {
   display: block;
   height: 35px;
   width: 100%;
-  border: 0px;  
-  margin-left: 5px;
+  border: 0;
+  background: none;
+  outline: 0;
+  /*margin-left: 5px;*/
   font-size: 14px;
 }
 
-
-
-
+/* Plugin Cards */
 
 #supportedPlatforms {
   display: flex;
@@ -73,11 +73,24 @@ body {
 }
 
 #pluginList li {
-  padding: 0px;
+  border: 1px solid;
+  padding: 5px;
   margin-bottom: 10px;
+  position: relative;
+  background: white;
 }
 
-
+#pluginList li:before {
+  content: "";
+  position:absolute;
+  z-index: -1;
+  width:96%;
+  bottom: 0;
+  height: 10px;
+  left: 2%;
+  border-radius: 20px;
+  box-shadow:0 0 18px rgba(0,0,0,0.6);
+}
 
 #pluginName {
   display: flex;
@@ -97,7 +110,7 @@ body {
 .star {
   width: 25px;
   height: 25px;
-  margin-left: 5px; 
+  margin-left: 5px;
 }
 
 /*

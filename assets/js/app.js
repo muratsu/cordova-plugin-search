@@ -71,6 +71,7 @@ var SearchBar = React.createClass({
                     <input
                         className="searchBox"
                         type="search"
+                        autoComplete="off"
                         placeholder={this.props.placeHolderText}
                         value={this.props.filterText}
                         ref="filterTextInput"
