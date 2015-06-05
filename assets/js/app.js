@@ -53,7 +53,7 @@ var SupportedPlatforms = React.createClass({
             }
         });
         return (
-            <div id="supportedPlatforms">{platformsSupported}</div>
+            <div id="supportedPlatforms" className="col-xs-9">{platformsSupported}</div>
         );
     }
 })
@@ -99,11 +99,12 @@ var Plugin = React.createClass({
                             'https://www.npmjs.com/package/' + this.props.plugin.name
                         }>{this.props.plugin.name}</a> by <span className="author">{this.props.plugin.author}</span></div>
                         <div id="pluginDesc">{this.props.plugin.description}</div>
-                        <div>
-                            <div>
-                                v{this.props.plugin.version} - {license}
-                            </div>
+                        <div className="row">
                             <SupportedPlatforms keywords={this.props.plugin.keywords}/>
+                            <div className="col-xs-3">
+                                <p className="license">License: {license}</p>
+                                <p className="version">Version: {this.props.plugin.version}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,7 +164,7 @@ var App = React.createClass({
                             if (plugins[i].name[0] === plugin) {
                                 plugins[i].isOfficial = true;
                                 return;
-                            } 
+                            }
                         };
                     })
 

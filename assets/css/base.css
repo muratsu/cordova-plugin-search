@@ -53,21 +53,7 @@ body {
   font-size: 14px;
 }
 
-/* Plugin Cards */
-
-
-
-#supportedPlatforms {
-  display: flex;
-}
-
-#supportedPlatforms div {
-  margin: 2px 2px 2px 0;
-  background: #e4edf4;
-  border: 1px solid #e4edf4;
-  padding: .4em .5em;
-  font-size: 12px;
-}
+/* Plugin List */
 
 #pluginList {
   list-style-type: none;
@@ -94,6 +80,7 @@ body {
   box-shadow:0 0 18px rgba(0,0,0,0.6);
 }
 
+/* Plugin Cards */
 
 .pluginCardContents {
   overflow: hidden;
@@ -121,11 +108,41 @@ body {
   font-size: 14px;
 }
 
+p.license {
+  text-align: right;
+  display: block;
+  margin: 0;
+  font-style: italic;
+  color: #363636;
+  font-size: 14px;
+}
+
+p.version {
+  text-align: right;
+  display: block;
+  margin: 0;
+}
+
+
 #featured {
   padding-bottom:100%;
   margin-bottom:-100%;
   float: left;
   width: 10px;
   background-color: #71B9F9;
-  /*display: inline-block;*/
+}
+
+#supportedPlatforms {
+  display: flex;
+}
+
+#supportedPlatforms div {
+  margin: 12px 2px 2px 0;
+  border: 1px solid #363636;
+  border-radius: 8px;
+  padding: .4em .5em;
+  font-size: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
